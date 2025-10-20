@@ -1,1 +1,0 @@
-/usr/bin/cc  -Wall -Wextra -g3 -fshort-enums -fdiagnostics-color=always -fprofile-arcs CMakeFiles/template_test.dir/template_test_main.c.o CMakeFiles/template_test.dir/template_test_runner.c.o CMakeFiles/template_test.dir/template_test.c.o -o template_test  template_build/template_lib.a unity_build/libunity.a -lm 

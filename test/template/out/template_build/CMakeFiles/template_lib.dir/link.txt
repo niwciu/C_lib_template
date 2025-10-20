@@ -1,2 +1,0 @@
-/usr/bin/ar qc template_lib.a CMakeFiles/template_lib.dir/template_lib.c.o
-/usr/bin/ranlib template_lib.a
