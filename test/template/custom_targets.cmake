@@ -15,13 +15,13 @@ add_custom_target(run template_test)
 # check if lizard software is available 
 find_program(lizard_program lizard)
 if(lizard_program)
-	message(STATUS "Lizard was found, you can use predefined targets for src folder Code Complexity Metrics: \r\n\tccm,\r\n\tccmr,")
+	message(STATUS "Lizard was found, you can use predefined targets for lib folder Code Complexity Metrics: \r\n\tccm,\r\n\tccmr,")
 else()
-	message(STATUS "Lizard was not found. \r\n\tInstall Lizard to get predefined targets for src folder Code Complexity Metrics")
+	message(STATUS "Lizard was not found. \r\n\tInstall Lizard to get predefined targets for lib folder Code Complexity Metrics")
 endif()
-# Prints CCM for src folder in the console
+# Prints CCM for lib folder in the console
 add_custom_target(ccm lizard 
-						../../../src/ 
+						../../../lib/template 
 						--CCN 12 -Tnloc=30 
 						-a 4 
 						--languages cpp 
@@ -36,7 +36,7 @@ add_custom_command(
 add_custom_target(ccmr 
 	COMMAND ${CMAKE_COMMAND} -E make_directory ../../../reports/CCM/
 	COMMAND lizard 
-				../../../src/ 
+				../../../lib/template 
 				--CCN 12 
 				-Tnloc=30 
 				-a 4 
@@ -54,7 +54,7 @@ else()
 	message(STATUS "CppCheck was not found. \r\n\tInstall CppCheck to get predefined targets for static analize")
 endif()
 add_custom_target(cppcheck cppcheck
-					../../../src/template
+					../../../lib/template
 					../../../test/template
 					-i../../../test/template/out
 					--enable=all
@@ -90,16 +90,16 @@ add_custom_target(ccr
 	COMMAND ${CMAKE_COMMAND} -E make_directory ../../../reports/CCR/
 	COMMAND ${CMAKE_COMMAND} -E make_directory ../../../reports/CCR/JSON_ALL/
 	COMMAND gcovr 
-				-r ../../../src/template 
+				-r ../../../lib/template_lib 
 				--json ../../../reports/CCR/JSON_ALL/coverage_template.json
-				--json-base  src/template
-				--html-details ../../../reports/CCR/template/template_report.html
+				--json-base  lib/template_lib
+				--html-details ../../../reports/CCR/template_report.html
 				--html-theme github.dark-green
 				.
 )
 		
 add_custom_target(ccc gcovr  
-						-r ../../../src/template 
+						-r ../../../lib/template_lib 
 						--fail-under-line 90
 						.
 )
@@ -116,7 +116,7 @@ add_custom_target(ccra
 	COMMAND gcovr 
 				-r ../../../ 
 				--json-add-tracefile \"../../../reports/CCR/JSON_ALL/coverage_*.json\"  
-				--html-details -o ../../../reports/CCR/HTML_OUT/project_coverage.html
+				--html-details -o ../../../reports/CCR/JSON_ALL/html_out/project_coverage.html
 				--html-theme github.dark-green
 				.
 )
@@ -132,8 +132,8 @@ endif()
 add_custom_target(format  clang-format 
 							-i 
 							-style=file 
-							../../../src/template/*.c 
-							../../../src/template/*.h
+							../../../lib/template_lib/*.c 
+							../../../lib/template_lib/*.h
 )
 add_custom_target(format_test  clang-format 
 								-i 
