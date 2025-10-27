@@ -57,7 +57,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ..)
 
 # --- Apply global defines ---
 target_compile_definitions(${PROJECT_NAME} PRIVATE ${GLOBAL_DEFINES})
-
+target_compile_definitions(template_lib PRIVATE ${GLOBAL_DEFINES})
 # --- Compiler flags ---
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -g3 -fshort-enums")
 if("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
